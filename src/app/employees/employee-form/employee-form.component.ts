@@ -20,7 +20,7 @@ export class EmployeeFormComponent {
       empName: ['', [Validators.required]],
       empRole: ['', [Validators.required]],
       startDate: ['', [Validators.required]],
-      endDate: ['', [Validators.required]]
+      endDate: ['']
     });
   }
 

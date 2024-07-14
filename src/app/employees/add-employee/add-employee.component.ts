@@ -7,14 +7,8 @@ import { FormGroup } from '@angular/forms';
   styleUrls: ['./add-employee.component.scss']
 })
 export class AddEmployeeComponent {
-  public submit = false;
 
-  onSubmit(form: FormGroup) {
-    this.submit = true;
-    if (!form.valid) {
-      return;
-    }
-
+  addEmployee(form: FormGroup) {
     //saved in database or locally in browser
     sessionStorage.setItem('employee', JSON.stringify(form.value));
   }
