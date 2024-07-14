@@ -1,4 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, inject } from '@angular/core';
+import { EmployeeService } from '../employee.service';
+import { take } from 'rxjs';
 
 @Component({
   selector: 'app-list-employee',
@@ -7,21 +9,28 @@ import { Component } from '@angular/core';
 })
 export class ListEmployeeComponent {
 
-  employeeList = [{
-    name: 'Samantha',
-    role: 'FulStack Developer',
-    start_date: '2024-10-22',
-    end_date: '2024-08-21'
-  }, {
-    name: 'David',
-    role: 'Product Manager',
-    start_date: '2024-10-22',
-    end_date: '2024-08-21'
-  }, {
-    name: 'Sarah',
-    role: 'QA Tester',
-    start_date: '2024-10-22',
-    end_date: '2024-08-21'
-  }]
+  private _dataService = inject(EmployeeService);
+  public employeeList = [];
+
+  ngAfterViewInit() {
+    this._dataService.getEmployee().pipe(take(1)).subscribe();
+  }
+
+  get allData() {
+    return this._dataService.sharedData;
+  }
+
+  trackEmployees(index: number, item: any) {
+    if (item != undefined) {
+      return item.id;
+    }
+  }
+
+  deleteEmployee(id: number | undefined) {
+    if (!id) return;
+    if (confirm('Are you sure want to delete this employee?')) {
+      this._dataService.removeData(id).pipe(take(1)).subscribe();
+    }
+  }
 
 }

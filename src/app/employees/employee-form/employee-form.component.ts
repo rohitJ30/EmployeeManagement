@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-form',
@@ -10,7 +11,6 @@ export class EmployeeFormComponent {
 
   @Input() submit: any;
   @Output() formsubmit = new EventEmitter();
-
   private _fb = inject(FormBuilder);
   public empForm!: FormGroup;
   employeeRoles = ['Product Designer', 'Flutter Developer', 'QA Tester', 'Product Owner'];
@@ -29,7 +29,6 @@ export class EmployeeFormComponent {
       this.submit = true;
       return;
     }
-
     this.formsubmit.emit(form);
   }
 
