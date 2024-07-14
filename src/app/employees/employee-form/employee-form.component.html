@@ -1,0 +1,57 @@
+<div
+  class="block max-w-exl p-10 bg-white border border-gray-500 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-1000 dark:border-gray-700 dark:hover:bg-gray-900">
+  <section class="bg-white dark:bg-gray-900">
+    <div class="py-8 px-4 mx-auto max-w-1xl lg:py-4">
+      <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">Add Employee</h2>
+      <form [formGroup]="empForm" (ngSubmit)="onSubmit(empForm)">
+        <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
+          <div class="sm:col-span-2">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Employee
+              Name <i class="error">*</i></label>
+            <input type="text" name="name" id="name"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              placeholder="Employee name" required="" formControlName="empName">
+          </div>
+
+
+          <div class="sm:col-span-2">
+            <label for="name" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Select Role
+              <i class="error">*</i></label>
+            <select id="countries"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500"
+              formControlName="empRole">
+              <option [value]="''">Select role</option>
+              <option *ngFor="let list of employeeRoles" value="{{employeeRoles}}">{{list}}</option>
+            </select>
+          </div>
+
+
+          <div class="w-full">
+            <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Today Date <i
+                class="error">*</i></label>
+            <input type="text" name="brand" id="brand"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              placeholder="Start date" required="" formControlName="startDate">
+          </div>
+
+
+          <div class="w-full">
+            <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Date <i
+                class="error">*</i></label>
+            <input type="number" name="price" id="price"
+              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
+              placeholder="End date" required="" formControlName="endDate">
+          </div>
+
+          <button type="submit"
+            class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800 btn">Submit</button>
+
+          <button type="button"
+            class="text-white bg-blue-300 hover:bg-blue-500 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center btn"
+            routerLink="/employee/list">Cancel</button>
+
+        </div>
+      </form>
+    </div>
+  </section>
+</div>
