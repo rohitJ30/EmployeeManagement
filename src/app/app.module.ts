@@ -6,6 +6,7 @@ import { HeaderComponent } from './core/header/header.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { EmployeesModule } from './employees/employees.module';
 import { DBConfig, NgxIndexedDBModule } from 'ngx-indexed-db';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 const dbConfig: DBConfig = {
   name: 'EmployeeDB',
@@ -32,7 +33,8 @@ const dbConfig: DBConfig = {
     BrowserModule,
     AppRoutingModule,
     EmployeesModule,
-    NgxIndexedDBModule.forRoot(dbConfig)
+    NgxIndexedDBModule.forRoot(dbConfig),
+    BrowserAnimationsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

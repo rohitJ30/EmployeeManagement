@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, Output, inject } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { ActivatedRoute } from '@angular/router';
 
 @Component({
   selector: 'app-employee-form',
@@ -14,6 +13,8 @@ export class EmployeeFormComponent {
   private _fb = inject(FormBuilder);
   public empForm!: FormGroup;
   employeeRoles = ['Product Designer', 'Flutter Developer', 'QA Tester', 'Product Owner'];
+  waitClose!: boolean;
+
 
   ngOnInit() {
     this.empForm = this._fb.group({
@@ -29,7 +30,11 @@ export class EmployeeFormComponent {
       this.submit = true;
       return;
     }
+    
+    form.value['startDate'] = new Date(form.value['startDate']).toISOString();
     this.formsubmit.emit(form);
   }
+
+
 
 }

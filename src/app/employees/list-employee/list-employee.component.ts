@@ -11,13 +11,18 @@ export class ListEmployeeComponent {
 
   private _dataService = inject(EmployeeService);
   public employeeList = [];
+  alertMsg: string = '';
 
   ngAfterViewInit() {
     this._dataService.getEmployee().pipe(take(1)).subscribe();
   }
 
-  get allData() {
-    return this._dataService.sharedData;
+  get allCurrentEmployees() {
+    return this._dataService.sharedData().filter(item => item.endDate == '');
+  }
+
+  get allPreviousEmployees() {
+    return this._dataService.sharedData().filter(item => item.endDate != '');
   }
 
   trackEmployees(index: number, item: any) {
@@ -30,6 +35,7 @@ export class ListEmployeeComponent {
     if (!id) return;
     if (confirm('Are you sure want to delete this employee?')) {
       this._dataService.removeData(id).pipe(take(1)).subscribe();
+      this.alertMsg = 'Employee data has been deleted!';
     }
   }
 

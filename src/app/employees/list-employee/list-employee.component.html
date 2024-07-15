@@ -1,6 +1,9 @@
 <div
     class="block max-w-1xl p-8 bg-white border border-gray-500 rounded-lg shadow hover:bg-gray-100 dark:bg-gray-1000 dark:border-gray-700 dark:hover:bg-gray-900">
     <div class="bg-white dark:bg-gray-800 relative shadow-md sm:rounded-lg overflow-hidden">
+        <div class="p-4 mb-4 text-sm text-green-800 rounded-lg bg-green-50 dark:bg-gray-800 dark:text-green-400" role="alert" *ngIf="alertMsg != ''">
+            <span class="font-medium">Success!</span> {{alertMsg}}
+        </div>
         <div class="flex flex-col md:flex-row items-center justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
             <div class="w-full md:w-1/2">
                 <h2 class="mb-4 text-xl font-bold text-gray-900 dark:text-white">List Employee</h2>
@@ -10,46 +13,28 @@
                 <button type="submit"
                     class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
                     routerLink="/employee/add">Add Employee</button>
-
             </div>
         </div>
+
+        <!-- Current Employees List Start -->
         <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
             <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
                 <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                     <tr>
                         <th scope="col" class="px-6 py-3">
-                            Employee Name
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Role
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Start Date
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            End Date
-                        </th>
-                        <th scope="col" class="px-6 py-3">
-                            Action
+                            Current Employees
                         </th>
                     </tr>
                 </thead>
-                <tbody>
-                    <tr class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700"
-                        *ngFor="let list of allData();trackBy: trackEmployees;">
-                        <th scope="row" class="px-6 py-4 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                            {{list?.empName}}
-                        </th>
-                        <td class="px-6 py-4">
-                            {{list?.empRole}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{list?.startDate}}
-                        </td>
-                        <td class="px-6 py-4">
-                            {{list?.endDate}}
-                        </td>
-                        <td class="flex items-center px-6 py-4">
+            </table>
+
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr class="tr-class" *ngFor="let list of allCurrentEmployees;trackBy: trackEmployees;">
+                        <td class="td-class"><b>{{list?.empName}}</b></td>
+                        <td class="td-class">{{list?.empRole}}</td>
+                        <td class="td-class">From {{list?.startDate | date}}</td>
+                        <td class="td-class">
                             <a href="javascript:void(0)"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                 routerLink="/employee/add/{{list?.id}}">Edit</a>
@@ -58,13 +43,52 @@
                                 (click)="deleteEmployee(list.id)">Remove</a>
                         </td>
                     </tr>
-                    <ng-container *ngIf="allData().length == 0">
-                        <tr
-                            class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
-                            <td class="px-6 py-4">No employees records found!</td>
-                        </tr>
-                    </ng-container>
-                </tbody>
+                </thead>
+                <ng-container *ngIf="allCurrentEmployees.length == 0">
+                    <tr
+                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td class="px-6 py-4">No employees records found!</td>
+                    </tr>
+                </ng-container>
             </table>
         </div>
+        <!-- Current Employees List End -->
+
+        <!-- Previous Employees List Start -->
+        <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr>
+                        <th scope="col" class="px-6 py-3">
+                            Previous Employees
+                        </th>
+                    </tr>
+                </thead>
+            </table>
+
+            <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+                <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                    <tr class="tr-class" *ngFor="let listing of allPreviousEmployees;trackBy: trackEmployees;">
+                        <td class="td-class"><b>{{listing?.empName}}</b></td>
+                        <td class="td-class">{{listing?.empRole}}</td>
+                        <td class="td-class">From {{listing?.startDate | date}} - {{listing?.endDate | date}} </td>
+                        <td class="td-class">
+                            <a href="javascript:void(0)"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                routerLink="/employee/add/{{listing?.id}}">Edit</a>
+                            <a href="javascript:void(0)"
+                                class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3"
+                                (click)="deleteEmployee(listing.id)">Remove</a>
+                        </td>
+                    </tr>
+                </thead>
+                <ng-container *ngIf="allPreviousEmployees.length == 0">
+                    <tr
+                        class="odd:bg-white odd:dark:bg-gray-900 even:bg-gray-50 even:dark:bg-gray-800 border-b dark:border-gray-700">
+                        <td class="px-6 py-4">No employees records found!</td>
+                    </tr>
+                </ng-container>
+            </table>
+        </div>
+        <!-- Previous Employees List End -->
     </div>
