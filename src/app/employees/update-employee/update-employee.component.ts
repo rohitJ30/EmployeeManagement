@@ -37,7 +37,7 @@ export class UpdateEmployeeComponent {
         empName: input.empName,
         empRole: input.empRole,
         startDate: new Date(input.startDate).toISOString(),
-        endDate: new Date(input.endDate).toISOString()
+        endDate: (input.endDate != '') ? new Date(input.endDate).toISOString() : ''
       });
     }
   }
