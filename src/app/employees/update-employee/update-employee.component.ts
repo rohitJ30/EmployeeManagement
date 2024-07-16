@@ -31,7 +31,6 @@ export class UpdateEmployeeComponent {
   }
 
   setEmployeeData(input: any) {
-    console.log('i ', input)
     if (input != null) {
       this.employeeForm.empForm.patchValue({
         empName: input.empName,
@@ -44,9 +43,10 @@ export class UpdateEmployeeComponent {
 
   updateEmployee(form: FormGroup) {
     if (!this.employeeId) return;
-    
+
     let input = Object.assign(form.value, { id: +this.employeeId });
     this._dataService.updateData(input, this.employeeId).pipe(take(1)).subscribe();
     this._router.navigate(['/employee/list']);
   }
 }
+

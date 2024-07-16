@@ -6,12 +6,6 @@ import { RouterModule, Routes } from '@angular/router';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-
-
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-
 import { BsDatepickerModule } from 'ngx-bootstrap/datepicker';
 
 
@@ -40,9 +34,6 @@ const routes: Routes = [{
   imports: [
     CommonModule,
     ReactiveFormsModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
     RouterModule.forChild(routes),
     BsDatepickerModule.forRoot()
   ]

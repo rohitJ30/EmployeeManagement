@@ -13,7 +13,7 @@ export class EmployeeFormComponent {
   private _fb = inject(FormBuilder);
   public empForm!: FormGroup;
   employeeRoles = ['Product Designer', 'Flutter Developer', 'QA Tester', 'Product Owner'];
-  waitClose!: boolean;
+  customInitDate!: Date;
 
 
   ngOnInit() {
@@ -30,11 +30,10 @@ export class EmployeeFormComponent {
       this.submit = true;
       return;
     }
-    
-    form.value['startDate'] = new Date(form.value['startDate']).toISOString();
+
+    //form.value['startDate'] = new Date(form.value['startDate']).toISOString();
+    //form.value['endDate'] = (form.value['endDate'] != '') ? new Date(form.value['endDate']).toISOString() : ''
     this.formsubmit.emit(form);
   }
-
-
 
 }
