@@ -37,10 +37,26 @@
           <div class="w-full">
             <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Date <i
                 class="error">*</i></label>
-            <input type="text" name="date" id="sdate"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              placeholder="Start date" required="" formControlName="startDate" bsDatepicker
-              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD'}">
+
+            <mat-form-field class="example-form-field">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="startdatepicker" formControlName="startDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="startdatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #startdatepicker>
+                <mat-datepicker-actions>
+                  <label class="selectedDate">{{empForm.value.startDate | date}}</label>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Save</button>
+                  <button mat-raised-button color="primary" (click)="today('start')" #todayButton>
+                    Today
+                  </button>
+                  <button mat-raised-button color="primary" (click)="nextMonday('start')" #todayButton>
+                    Next Monday
+                  </button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+            </mat-form-field>
 
             <ng-container [ngTemplateOutlet]="employeeRef"
               [ngTemplateOutletContext]="{list: empForm, controlName:'startDate'}">
@@ -49,10 +65,27 @@
 
           <div class="w-full">
             <label for="price" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Last Date </label>
-            <input type="text" name="date" id="edate"
-              class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-              placeholder="End date" formControlName="endDate" bsDatepicker
-              [bsConfig]="{ dateInputFormat: 'YYYY-MM-DD'}">
+
+            <mat-form-field class="example-form-field">
+              <mat-label>Choose a date</mat-label>
+              <input matInput [matDatepicker]="enddatepicker" formControlName="endDate">
+              <mat-hint>MM/DD/YYYY</mat-hint>
+              <mat-datepicker-toggle matIconSuffix [for]="enddatepicker"></mat-datepicker-toggle>
+              <mat-datepicker #enddatepicker>
+                <mat-datepicker-actions>
+                  <label class="selectedDate">{{empForm.value.endDate | date}}</label>
+                  <button mat-button matDatepickerCancel>Cancel</button>
+                  <button mat-raised-button color="primary" matDatepickerApply>Save</button>
+                  <button mat-raised-button color="primary" (click)="today('last')" #todayButton>
+                    Today
+                  </button>
+                  <button mat-raised-button color="primary" (click)="nextMonday('last')" #todayButton>
+                    Next Monday
+                  </button>
+                </mat-datepicker-actions>
+              </mat-datepicker>
+            </mat-form-field>
+
           </div>
 
           <button type="submit"

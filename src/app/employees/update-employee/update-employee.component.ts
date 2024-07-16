@@ -10,6 +10,7 @@ import { FormGroup } from '@angular/forms';
   templateUrl: './update-employee.component.html',
   styleUrls: ['./update-employee.component.scss']
 })
+
 export class UpdateEmployeeComponent {
   @ViewChild('employeeForm') employeeForm!: EmployeeFormComponent;
   private _dataService = inject(EmployeeService);
@@ -35,8 +36,8 @@ export class UpdateEmployeeComponent {
       this.employeeForm.empForm.patchValue({
         empName: input.empName,
         empRole: input.empRole,
-        startDate: input.startDate,
-        endDate: input.endDate
+        startDate: new Date(input.startDate).toISOString(),
+        endDate: new Date(input.endDate).toISOString()
       });
     }
   }
