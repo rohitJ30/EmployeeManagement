@@ -1,17 +1,12 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { RouterModule, Routes } from '@angular/router';
 import { ListEmployeeComponent } from './list-employee/list-employee.component';
 import { AddEmployeeComponent } from './add-employee/add-employee.component';
-import { RouterModule, Routes } from '@angular/router';
+import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { UpdateEmployeeComponent } from './update-employee/update-employee.component';
-import { MatDatepickerModule } from '@angular/material/datepicker';
-import { MatNativeDateModule } from '@angular/material/core';
-import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatInputModule } from '@angular/material/input';
-import { MatButtonModule } from '@angular/material/button';
-
+import { SharedModule } from '../shared/shared.module';
 
 const routes: Routes = [{
   path: '',
@@ -33,17 +28,13 @@ const routes: Routes = [{
     ListEmployeeComponent,
     AddEmployeeComponent,
     EmployeeFormComponent,
-    UpdateEmployeeComponent
+    UpdateEmployeeComponent,
   ],
   imports: [
     CommonModule,
     ReactiveFormsModule,
     RouterModule.forChild(routes),
-    MatDatepickerModule,
-    MatNativeDateModule,
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule
+    SharedModule
   ]
 })
 export class EmployeesModule { }
