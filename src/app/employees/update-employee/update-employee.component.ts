@@ -46,8 +46,7 @@ export class UpdateEmployeeComponent {
     if (!this.employeeId) return;
 
     let input = Object.assign(form.value, { id: +this.employeeId });
-    this._dataService.updateData(input, this.employeeId).pipe(take(1)).subscribe();
+    this._dataService.updateData(input).pipe(take(1)).subscribe();
     this._router.navigate(['/employee/list']);
   }
 }
-

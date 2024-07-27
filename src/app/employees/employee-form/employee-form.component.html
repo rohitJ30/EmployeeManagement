@@ -38,7 +38,7 @@
             <label for="brand" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Start Date <i
                 class="error">*</i></label>
 
-            <app-datepicker [controlType ="'startDate'"></app-datepicker>
+            <app-datepicker [controlType] ="'startDate'"></app-datepicker>
           
             <ng-container [ngTemplateOutlet]="employeeRef"
               [ngTemplateOutletContext]="{list: empForm, controlName:'startDate'}">

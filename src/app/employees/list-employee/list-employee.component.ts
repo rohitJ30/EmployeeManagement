@@ -13,7 +13,7 @@ export class ListEmployeeComponent {
   public employeeList = [];
   alertMsg: string = '';
 
-  ngAfterViewInit() {
+  ngOnInit() {
     this._dataService.getEmployee().pipe(take(1)).subscribe();
   }
 
