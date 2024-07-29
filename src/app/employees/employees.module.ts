@@ -7,6 +7,7 @@ import { UpdateEmployeeComponent } from './update-employee/update-employee.compo
 import { EmployeeFormComponent } from './employee-form/employee-form.component';
 import { ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
+import { DetailsEmployeeComponent } from './details-employee/details-employee.component';
 
 const routes: Routes = [{
   path: '',
@@ -19,6 +20,9 @@ const routes: Routes = [{
   }, {
     path: 'add/:id',
     component: UpdateEmployeeComponent
+  },{
+    path: 'view/:id',
+    component: DetailsEmployeeComponent
   }]
 }]
 
@@ -29,6 +33,7 @@ const routes: Routes = [{
     AddEmployeeComponent,
     EmployeeFormComponent,
     UpdateEmployeeComponent,
+    DetailsEmployeeComponent,
   ],
   imports: [
     CommonModule,

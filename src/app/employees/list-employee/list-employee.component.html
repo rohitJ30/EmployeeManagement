@@ -38,7 +38,12 @@
                         <td class="td-class">
                             <a href="javascript:void(0)"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                routerLink="/employee/view/{{list?.id}}">Details</a> &nbsp;
+
+                            <a href="javascript:void(0)"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                 routerLink="/employee/add/{{list?.id}}">Edit</a>
+
                             <a href="javascript:void(0)"
                                 class="font-medium text-red-600 dark:text-red-500 hover:underline ms-3"
                                 (click)="deleteEmployee(list.id)">Remove</a>
@@ -74,6 +79,9 @@
                         <td class="td-class">{{listing?.empRole}}</td>
                         <td class="td-class">From {{listing?.startDate | date}} - {{listing?.endDate | date}} </td>
                         <td class="td-class">
+                            <a href="javascript:void(0)"
+                                class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                                routerLink="/employee/view/{{listing?.id}}">Details</a> &nbsp;
                             <a href="javascript:void(0)"
                                 class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
                                 routerLink="/employee/add/{{listing?.id}}">Edit</a>
